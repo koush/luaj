@@ -17,7 +17,9 @@ android {
         minSdkVersion 14
     }
 
-    dependencies {
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 
     compileSdkVersion project.hasProperty('global_compileSdkVersion') ? global_compileSdkVersion : 28

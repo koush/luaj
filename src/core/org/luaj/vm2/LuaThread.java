@@ -311,12 +311,12 @@ public class LuaThread extends LuaValue {
 				this.notify();
 				do {
 					this.wait(thread_orphan_check_interval);
-					notifyLuaThreadResume();
 					if (this.lua_thread.get() == null) {
 						this.status = STATUS_DEAD;
 						throw new OrphanedThread();
 					}
 				} while (this.status == STATUS_SUSPENDED);
+				notifyLuaThreadResume();
 				return this.args;
 			} catch (InterruptedException ie) {
 				this.status = STATUS_DEAD;
