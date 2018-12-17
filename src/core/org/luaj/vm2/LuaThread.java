@@ -172,10 +172,13 @@ public class LuaThread extends LuaValue {
 		return true;
 	}
 
-	protected void onYield(Varargs args) {
+	protected void onStart() {
 	}
 
 	protected void onResume() {
+	}
+
+	protected void onYield(Varargs args) {
 	}
 
 	protected void onComplete(Throwable e, Varargs args) {
@@ -213,6 +216,7 @@ public class LuaThread extends LuaValue {
 
 		public synchronized void run() {
 			try {
+				notifyLuaThreadStart();
 				notifyLuaThreadResume();
 				Varargs a = this.args;
 				this.args = LuaValue.NONE;
@@ -301,6 +305,12 @@ public class LuaThread extends LuaValue {
 			LuaThread thread = (LuaThread) this.lua_thread.get();
 			if (thread != null)
 				thread.onComplete(e, args);
+		}
+
+		void notifyLuaThreadStart() {
+			LuaThread thread = (LuaThread) this.lua_thread.get();
+			if (thread != null)
+				thread.onStart();
 		}
 
 		public synchronized Varargs lua_yield(Varargs args) {
