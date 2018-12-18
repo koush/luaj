@@ -133,6 +133,10 @@ public class LuaClosure extends LuaFunction {
 		System.arraycopy(NILS, 0, stack, 0, max);
 		return stack;
 	}
+
+	public Globals getGlobals() {
+		return globals;
+	}
 	
 	public final LuaValue call() {
 		LuaValue[] stack = getNewStack();
