@@ -63,7 +63,7 @@ public class CoerceLuaToJava {
 	static int SCORE_WRONG_TYPE     =   0x100;
 	static int SCORE_UNCOERCIBLE    = 0x10000;
 	
-	static interface Coercion { 
+	public static interface Coercion {
 		public int score( LuaValue value );
 		public Object coerce( LuaValue value );
 	};
@@ -78,7 +78,7 @@ public class CoerceLuaToJava {
 		return getCoercion(clazz).coerce(value);
 	}
 	
-	static final Map COERCIONS = Collections.synchronizedMap(new HashMap());
+	public static final Map COERCIONS = Collections.synchronizedMap(new HashMap());
 	
 	static final class BoolCoercion implements Coercion {
 		public String toString() {

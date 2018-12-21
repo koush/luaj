@@ -64,7 +64,7 @@ import org.luaj.vm2.LuaValue;
  */
 public class CoerceJavaToLua {
 
-	static interface Coercion { 
+	static interface Coercion {
 		public LuaValue coerce( Object javaValue );
 	};
 	
